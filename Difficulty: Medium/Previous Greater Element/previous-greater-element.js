@@ -4,17 +4,19 @@
  */
 class Solution {
     preGreaterEle(arr) {
-        let stack = [];
-        let previousGreater = new Array(arr.length).fill(-1);
-        for(let i= 0; i<arr.length; i++){
-            while(stack.length && arr[i] >= stack[stack.length-1]){
-                stack.pop();
-            }
-            if(stack.length){
-                previousGreater[i] = stack[stack.length-1];
-            }
-            stack.push(arr[i]);
+        // code here
+        let st = [];
+        let result = [];
+        for(let i=0; i<arr.length; i++){
+            result[i] = -1;
         }
-        return previousGreater;
+        for(let i=arr.length-1; i>=0; i--){
+            while(st.length > 0 && arr[i] > arr[st[st.length-1]]){
+                let j = st.pop();
+                result[j] = arr[i];
+            }
+            st.push(i);
+        }
+        return result;
     }
 }
