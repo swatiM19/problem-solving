@@ -4,17 +4,20 @@
  */
 
 class Solution {
-    prevSmaller(arr) {
+    prevSmaller(nums) {
         // code here
-        let stack = [];
-        let res = [];
-        for(let i=0; i<arr.length; i++){
-            while(stack.length > 0 &&  arr[i] <= arr[stack[stack.length-1]]){
-                stack.pop();
-            }
-            res[i] = arr[stack[stack.length-1 ]] ?? -1;
-            stack.push(i);
-        }
-        return res;
+    var st = [];
+    var result = [];
+    for (var i = 0; i < nums.length; i++) {
+        result[i] = -1;
+    }
+    for (var i = 0; i < nums.length; i++) {
+        while (st.length > 0 && nums[i] <= nums[st[st.length - 1]])
+            st.pop();
+        result[i] = st.length > 0 ? nums[st[st.length - 1]] : -1;
+        st.push(i);
+    }
+    return result;
+        
     }
 }
