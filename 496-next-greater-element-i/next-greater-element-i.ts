@@ -12,7 +12,11 @@ function nextGreaterElement(nums1: number[], nums2: number[]): number[] {
     }
     console.log(res)
     for(let i=0; i<nums1.length; i++){
-        res[i] = map.get(nums1[i]) ?? -1;
+        if (map.has(nums1[i])) {
+            res[i] = map.get(nums1[i])!;
+        } else {
+            res[i] = -1;
+        }
     }
     return res;
 };
