@@ -2,15 +2,14 @@
  * @param {number[]} heights
  * @return {number[]}
  */
- // 
 var findBuildings = function(heights) {
     let ans = [];
-    // ans.push(0);
-    for(let i=0; i<heights.length; i++){
-        while(ans.length && heights[i] >= heights[ans[ans.length-1]]){
-            ans.pop();
+    let max = -1;
+    for(let i=heights.length-1 ; i>=0; i--){
+        if(max < heights[i]){
+            ans.push(i);
+            max=heights[i];
         }
-        ans.push(i) 
     }
-    return ans;
+    return ans.reverse()
 };
