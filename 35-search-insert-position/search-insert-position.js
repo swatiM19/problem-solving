@@ -4,18 +4,21 @@
  * @return {number}
  */
 var searchInsert = function(nums, target) {
-    let lo = -1;
-    let hi = nums.length
-    while(lo +1 < hi){
-        let mid = lo + Math.floor((hi-lo)/2);
-        if(isGreaterOrEqual(nums[mid],target)){
-            hi = mid;
+    return binarySearch(nums, target);
+};
+var binarySearch = function(nums,target){
+    let n = nums.length;
+    let low = 0;
+    let high = n-1;
+    while(low <= high){
+        let mid = Math.floor((low+high)/2);
+        if(nums[mid] == target){
+            return mid;
+        } else if(target < nums[mid]){
+            high = mid-1;
         } else {
-            lo = mid;
+            low = mid+1;
         }
     }
-    return hi;
-};
-var isGreaterOrEqual = function(num, target) {
-    return num >= target;
+    return low;
 }
