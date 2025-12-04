@@ -3,12 +3,12 @@
  * @param {number} target
  * @return {number}
  */
-var searchInsert = function(nums, target) {
+var search = function(nums, target) {
     return binarySearch(nums, target);
 };
-var binarySearch = function(nums,target){
+var binarySearch = function(nums, target){
     let n = nums.length;
-    let low = 0;
+    let low = 0; 
     let high = n-1;
     while(low <= high){
         let mid = Math.floor((low+high)/2);
@@ -20,5 +20,5 @@ var binarySearch = function(nums,target){
             low = mid+1;
         }
     }
-    return low;
+    return -1;
 }
