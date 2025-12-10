@@ -1,21 +1,20 @@
 function maxVowels(s: string, k: number): number {
-    const vowels = ['a', 'e', 'i', 'o', 'u'];
-    let vowelWindow = 0;
-    let maxVowel = 0;
-    for(let i=0; i<k; i++){
-        if(vowels.includes(s[i])){
-            vowelWindow++;
+    let vowels = ['a', 'e', 'i', 'o', 'u'];
+    let l = 0;
+    let windowCount = 0;
+    let maxCount =0;
+
+    for(let r =0; r<s.length; r++){
+        if(vowels.includes(s[r])){
+            windowCount++;
         }
+        if(r -l + 1 > k){
+            if(vowels.includes(s[l])){
+                windowCount--;
+            }
+            l++;
+        }
+        maxCount = Math.max(maxCount, windowCount);
     }
-    maxVowel = vowelWindow;
-    for(let i=k; i<s.length; i++){
-        if(vowels.includes(s[i])){
-            vowelWindow++;
-        }
-        if(vowels.includes(s[i-k])){
-            vowelWindow--;
-        }
-        maxVowel = Math.max(maxVowel, vowelWindow);
-    }
-    return maxVowel;
+    return maxCount;
 };
