@@ -3,19 +3,17 @@
  * @return {number}
  */
 var maxArea = function(height) {
-    let l = 0;
-    let r = height.length -1;
-    let max = 0;
-    while(l < r){
-        let lheight = height[l];
-        let rheight = height[r];
-        let areaheight = Math.min(lheight, rheight);
-        max = Math.max(max, areaheight * (r-l));
-        if(lheight <rheight){
-            l++;
+    let i =0;
+    let j= height.length-1;
+    let maxArea = 0;
+    while(i<j){
+        let currArea = Math.min(height[i], height[j]) * (j-i);
+        maxArea = Math.max(maxArea, currArea);
+        if(height[i] < height[j]){
+            i++;
         } else {
-            r--;
+            j--;
         }
     }
-    return max;
+    return maxArea;
 };
