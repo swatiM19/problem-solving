@@ -3,6 +3,7 @@
  * @return {number}
  */
 var numDecodings = function(s) {
+    
     let dp = Array(s+1).fill(0);
     if(s[0] == '0'){
         return 0;
