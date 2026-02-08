@@ -6,6 +6,7 @@
 
 var findWord = function(board, i , j, idx, word){
     let directions = [[1,0],[-1,0],[0,1],[0,-1]];
+    
     if(idx == word.length) return true;
     if(i < 0 || j < 0 || i >= board.length || j >= board[0].length || board[i][j] == "$"){
         return false;
