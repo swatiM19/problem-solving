@@ -11,7 +11,6 @@ var threeSumClosest = function(nums, target) {
         let r = nums.length-1;
         while(l <r){
             let sum = nums[i]+ nums[l]+ nums[r];
-            // console.log(Math.abs(target-sum),Math.abs(target-closestSum) )
             if(Math.abs(target-sum) < Math.abs(target-closestSum)){
                 closestSum = sum;
             } else if (sum < target) {
