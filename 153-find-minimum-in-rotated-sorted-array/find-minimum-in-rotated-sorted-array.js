@@ -3,21 +3,30 @@
  * @return {number}
  */
 var findMin = function(nums) {
-    let lo = -1;
-    let hi = nums.length -1;
-
-    while(lo +1 < hi){
-        let mid = lo + Math.floor((hi-lo)/2);
-        if(isOnRight(nums,mid)){
-            hi = mid;
-        } else {
-            lo = mid;
-        }
+  let low = 0;
+  let high = nums.length-1;
+  let ans = Infinity;
+  while(low <= high){
+    let mid = low + Math.floor((high-low)/2);
+    // handle sorted
+    if(nums[low] <= nums[high]){
+        ans = Math.min(ans, nums[low]);
+        break;
     }
-    // console.log('hi', hi);
-    return nums[hi];
+    // handle duplicates
+    if(nums[low] == nums[high]){
+        ans = Math.min(nums[low], ans);
+        low = low+1;
+        high = high-1;
+        continue;
+    }
+    if(nums[low] <= nums[mid]){
+        ans = Math.min(ans, nums[low]);
+        low = mid+1
+    } else {
+        ans = Math.min(ans, nums[mid]);
+        high = mid-1;
+    }
+  }
+  return ans;  
 };
-
-var isOnRight = function(nums, index){
-    return nums[index] <= nums[nums.length-1];
-}
