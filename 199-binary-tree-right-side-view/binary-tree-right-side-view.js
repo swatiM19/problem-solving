@@ -10,20 +10,29 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var rightSideView = function(A) {
-    if(!A) return [];
+var rightSideView = function(root) {
     let result = [];
-    
-    function preordertraversal(root,level){
-        if(root == null) return;
-        if(result.length == level){
-            result.push(root.val)
+    let queue = [];
+    if (root == null) return result;
+    queue.push(root);
+    while(queue.length > 0){
+        let len = queue.length;
+        let level = [];
+        for(let i=0; i<len; i++){
+            let node = queue.shift();
+            if(i == len-1){
+                result.push(node.val)
+            }
+            if(node.left){
+                queue.push(node.left)
+            }
+            if(node.right){
+                queue.push(node.right)
+            }
+            // level.push(node.val)
         }
-        preordertraversal(root.right,level+1);
-        preordertraversal(root.left,level+1);
+        // result.push(level)
     }
-    
-    preordertraversal(A,0);
-    //console.log(result); 
+    console.log(result)
     return result;
 };
