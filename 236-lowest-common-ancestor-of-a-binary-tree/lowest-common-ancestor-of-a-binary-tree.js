@@ -12,35 +12,22 @@
  * @return {TreeNode}
  */
 var lowestCommonAncestor = function(root, p, q) {
-    function findPath (root, node, path){
-        if(root == null){
-            return false;
-        }
-        path.push(root);
-        if(root.val == node.val){
-            return true;
-        }
-        if(findPath(root.left, node, path) || findPath(root.right, node, path)){
-            return true;
-        }
-        path.pop();
-        return false;
+    
+    if(root == null){
+        return root
     }
-    let pathP = []
-    let pathQ = [];
-    findPath(root, p, pathP)
-    findPath(root, q, pathQ);
-    //console.log(pathP, pathQ)
-    let len = Math.min(pathP.length, pathQ.length);
-    //console.log(pathP, pathQ, len)
-    let lca = 0;
-    for(let i=0; i<len; i++){
-        if(pathP[i] == pathQ[i]){
-            lca = pathP[i];
-        } else {
-            break;
-        }
+    if(root == p || root == q){
+        return root;
     }
-    //console.log('lca',lca)
-    return lca;
+
+    let left = lowestCommonAncestor(root.left,p,q);
+    let right = lowestCommonAncestor(root.right,p,q);
+
+    if(left == null){
+        return right;
+    } else if(right == null){
+        return left;
+    } else {
+        return root;
+    }
 };
