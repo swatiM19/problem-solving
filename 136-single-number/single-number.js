@@ -1,11 +1,11 @@
-/**
- * @param {number[]} nums
- * @return {number}
- */
-/**
- * @param {number[]} nums
- * @return {number}
- */
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
 var singleNumber = function(nums) {
     let set = new Set();
     for (let i of nums){
