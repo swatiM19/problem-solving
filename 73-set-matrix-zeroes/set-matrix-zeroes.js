@@ -1,7 +1,7 @@
-/**
- * @param {number[][]} matrix
- * @return {void} Do not return anything, modify matrix in-place instead.
- */
+// /**
+//  * @param {number[][]} matrix
+//  * @return {void} Do not return anything, modify matrix in-place instead.
+//  */
 var setZeroes = function(matrix) {
     let firstRow = false;
     let firstCol= false;
