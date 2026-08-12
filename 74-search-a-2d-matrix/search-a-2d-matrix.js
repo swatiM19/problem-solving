@@ -1,28 +1,24 @@
-/**
- * @param {number[][]} matrix
- * @param {number} target
- * @return {boolean}
- */
+// /**
+//  * @param {number[][]} matrix
+//  * @param {number} target
+//  * @return {boolean}
+//  */
 var searchMatrix = function(matrix, target) {
-    let m = matrix.length;
-    let n = matrix[0].length;
-    console.log(m, n)
-    let lo = -1;
-    let hi = (n*m)-1;
-    console.log(lo, hi)
-    while(lo + 1 < hi){
-        let mid = lo + Math.floor((hi-lo)/2);
-        if(isGreaterOrEqual(matrix, target, mid, n)){
-            hi = mid;
-        } else {
-            lo = mid;
+    let n = matrix.length;
+    let m = matrix[0].length;
+    let s = 0;
+    let e = n*m-1;
+    while(s<=e){
+        let mid = s + Math.floor((e-s)/2);
+        let row = Math.floor(mid/m);
+        let col = mid%m;
+        if(matrix[row][col] == target){
+            return true;
+        } else if(matrix[row][col] < target){
+            s = mid+1;
+        } else if(matrix[row][col] > target){
+            e = mid-1;
         }
     }
-    console.log('hi', hi);
-    return matrix[Math.floor(hi/n)][hi%n] == target;
+    return false;
 };
-
-var isGreaterOrEqual = function (matrix,target,idx,n) {
-    console.log('idx',idx,Math.floor(idx/n),idx%n)
-    return matrix[Math.floor(idx/n)][idx%n] >= target;
-}
